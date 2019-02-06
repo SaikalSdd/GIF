@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fetch Categories</title>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div id="output"></div>
+<script type="text/javascript">
+
+var search = prompt('Add your search term here');
+search = search.trim().replace(/ /g, "+");
+let urlgif = 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=D9CFMR2JMik6PeVKvmXkpr4E4UqHqSj5';
+
+
+var xhr = $.get(urlgif);
+xhr.done(function(data) { 
+	console.log("success got data", data);
+	
+	var giflist = data.data
+	for (i in giflist){
+		$('#output').append("<img src='"+giflist[i].images.original.url+"''/>")
+	}
+
+
+});
+
+
+</script>
+</body>
+</html>
